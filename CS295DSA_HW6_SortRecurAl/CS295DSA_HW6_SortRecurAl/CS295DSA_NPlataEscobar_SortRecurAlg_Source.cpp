@@ -13,13 +13,14 @@
 #include <string>
 
 //------ Variable/Method Declarations ------
-int arrA[8] = {3,2,1,10,11,12,20,15};
-
 void MergeSort(int arr[], int left, int right);
+void Merge();
 void InsertionSort();
 
 //------ MAIN ------
 int main() {
+	int arrA[8] = { 3,2,1,10,11,12,20,15 };
+	int sizeof_A = sizeof(arrA)/sizeof(arrA[0]);
 	
 	std::cout << "Double ENTER to exit." << std::endl;
 	std::string exit;
@@ -34,6 +35,16 @@ int main() {
 
 */
 void MergeSort(int arr[], int left, int right) {
+	// Determine the middle point in arr
+	if (left < right) {
+
+	}
+}
+
+/* Merge
+
+*/
+void Merge() {
 
 }
 

@@ -21,9 +21,9 @@ void InsertionSort();
 //------ MAIN ------
 int main() {
 	int arrA[8] = { 3,2,1,10,11,12,20,15 };
-	int sizeof_A = sizeof(arrA)/sizeof(arrA[0]);
+	int SIZE_OF_A = sizeof(arrA)/sizeof(arrA[0]);
 
-	MergeSort(arrA, 0, sizeof_A - 1);
+	MergeSort(arrA, 0, SIZE_OF_A - 1);
 	
 	std::cout << "Double ENTER to exit." << std::endl;
 	std::string exit;
@@ -52,19 +52,19 @@ void MergeSort(int arr[], int left, int right) {
 */
 void Merge(int arr[], int left, int mid, int right) {
 	int i, j, k;
-	static const int LEFT_HALF = mid - (left + 1);
-	static const int RIGHT_HALF = right - mid;
-	int L[LEFT_HALF], R[RIGHT_HALF];
-	for (i = 0; i < LEFT_HALF; i++) {
+	int leftHalf = mid-(left + 1);
+	int rightHalf = right-mid;
+	int L[leftHalf], R[rightHalf];
+	for (i = 0; i < leftHalf; i++) {
 		L[i] = arr[left + i];
 	}
-	for (j = 0; j < RIGHT_HALF; j++) {
+	for (j = 0; j < rightHalf; j++) {
 		R[j] = arr[mid + 1 + j];
 	}
 	i = 0;
 	j = 0;
 	k = 1;
-	while (i < LEFT_HALF && j < RIGHT_HALF) {
+	while (i < leftHalf && j < rightHalf) {
 		if (L[i] <= R[j]) {
 			arr[k] = L[i];
 			i++;
@@ -76,13 +76,13 @@ void Merge(int arr[], int left, int mid, int right) {
 		k++;
 	}
 	// left half merge
-	while (i < LEFT_HALF) {
+	while (i < leftHalf) {
 		arr[k] = L[i];
 		i++;
 		k++;
 	}
 	// right half merge
-	while (j < RIGHT_HALF) {
+	while (j < rightHalf) {
 		arr[k] = R[j];
 		j++;
 		k++;

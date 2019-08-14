@@ -14,13 +14,15 @@
 
 //------ Variable/Method Declarations ------
 void MergeSort(int arr[], int left, int right);
-void Merge();
+void Merge(int arr[], int left, int mid, int right);
 void InsertionSort();
 
 //------ MAIN ------
 int main() {
 	int arrA[8] = { 3,2,1,10,11,12,20,15 };
 	int sizeof_A = sizeof(arrA)/sizeof(arrA[0]);
+
+	MergeSort(arrA, 0, sizeof_A - 1);
 	
 	std::cout << "Double ENTER to exit." << std::endl;
 	std::string exit;
@@ -37,15 +39,54 @@ int main() {
 void MergeSort(int arr[], int left, int right) {
 	// Determine the middle point in arr
 	if (left < right) {
-
+		int midpoint = left + (right - left) / 2;
+		MergeSort(arr, left, midpoint);
+		MergeSort(arr, midpoint + 1, right);
+		Merge(arr, left, midpoint, right);
 	}
 }
 
 /* Merge
 
 */
-void Merge() {
-
+void Merge(int arr[], int left, int mid, int right) {
+	int i, j, k;
+	int leftHalf = mid - (left + 1);
+	int rightHalf = right - mid;
+	int L[leftHalf];
+	int R[rightHalf];
+	for (i = 0; i < leftHalf; i++) {
+		L[i] = arr[left + i];
+	}
+	for (j = 0; j < rightHalf; j++) {
+		R[j] = arr[mid + 1 + j];
+	}
+	i = 0;
+	j = 0;
+	k = 1;
+	while (i < leftHalf && j < rightHalf) {
+		if (L[i] <= R[j]) {
+			arr[k] = L[i];
+			i++;
+		}
+		else {
+			arr[k] = R[j];
+			j++;
+		}
+		k++;
+	}
+	// left half merge
+	while (i < leftHalf) {
+		arr[k] = L[i];
+		i++;
+		k++;
+	}
+	// right half merge
+	while (j < rightHalf) {
+		arr[k] = R[j];
+		j++;
+		k++;
+	}
 }
 
 /*	Insertion Sort

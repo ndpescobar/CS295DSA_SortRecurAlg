@@ -12,17 +12,31 @@
 #include <iostream>
 #include <string>
 
-//------ Variable/Method Declarations ------
+//------ Prototypes ------
 void MergeSort(int arr[], int left, int right);
 void Merge(int arr[], int left, int mid, int right);
-void InsertionSort();
+void InsertionSort(int arr[], int n);
+void printArray(int arr[], int n);
 
 //------ MAIN ------
 int main() {
 	int arrA[8] = { 3,2,1,10,11,12,20,15 };
-	const int SIZE_OF_A = sizeof(arrA)/sizeof(arrA[0]);
+	int sizeof_A = sizeof(arrA)/sizeof(arrA[0]);
 
-	MergeSort(arrA, 0, SIZE_OF_A - 1);
+	std::cout << "Array A before sorting" << std::endl;
+	printArray(arrA, sizeof_A);
+	MergeSort(arrA, 0, sizeof_A - 1);
+	std::cout << "Array A after sorting" << std::endl;
+	printArray(arrA, sizeof_A);
+
+	int arrB[8] = { 3,2,1,10,11,12,20,15 };
+	int sizeof_B = sizeof(arrB) / sizeof(arrB[0]);
+
+	std::cout << "Array B before sorting" << std::endl;
+	printArray(arrB, sizeof_B);
+	InsertionSort(arrB, sizeof_B);
+	std::cout << "Array B after sorting" << std::endl;
+	printArray(arrB, sizeof_B);
 	
 	std::cout << "Double ENTER to exit." << std::endl;
 	std::string exit;
@@ -47,7 +61,7 @@ void MergeSort(int arr[], int l, int r) {
 //Merge
 void Merge(int arr[], int left, int mid, int right) {
 	int i, j, k;
-	int leftHalf = mid-(left + 1);
+	int leftHalf = mid-left + 1;
 	int rightHalf = right-mid;
 	int* L = new int[leftHalf];
 	int* R = new int[rightHalf];
@@ -86,6 +100,23 @@ void Merge(int arr[], int left, int mid, int right) {
 }
 
 // Insertion Sort
-void InsertionSort() {
+void InsertionSort(int arr[], int n) {
+	int i, j, key;
+	for (i = 1; i < n; i++) {
+		key = arr[i];
+		j = i - 1;
+	}
+	while (j >= 0 && arr[j] > key) {
+		arr[j + 1] = arr[j];
+		j = j - 1;
+	}
+	arr[j + 1] = key;
+}
 
+// print utility
+void printArray(int arr[], int n) {
+	for (int i = 0; i < n; i++) {
+		std::cout << arr[i] << " ";
+	}
+	std::cout << std::endl;
 }

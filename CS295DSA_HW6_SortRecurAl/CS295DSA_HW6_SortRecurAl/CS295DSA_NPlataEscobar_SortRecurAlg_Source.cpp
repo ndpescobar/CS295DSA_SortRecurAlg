@@ -9,7 +9,6 @@
 	@version: 0.1
 */
 //------ Include Libraries ------
-#include <cstdlib>
 #include <iostream>
 #include <string>
 
@@ -21,7 +20,7 @@ void InsertionSort();
 //------ MAIN ------
 int main() {
 	int arrA[8] = { 3,2,1,10,11,12,20,15 };
-	int SIZE_OF_A = sizeof(arrA)/sizeof(arrA[0]);
+	const int SIZE_OF_A = sizeof(arrA)/sizeof(arrA[0]);
 
 	MergeSort(arrA, 0, SIZE_OF_A - 1);
 	
@@ -34,27 +33,24 @@ int main() {
 }
 
 //------ Methods ------
-/* Merge Sort
-
-*/
-void MergeSort(int arr[], int left, int right) {
+// Merge Sort
+void MergeSort(int arr[], int l, int r) {
 	// Determine the middle point in arr
-	if (left < right) {
-		int midpoint = left + (right - left) / 2;
-		MergeSort(arr, left, midpoint);
-		MergeSort(arr, midpoint + 1, right);
-		Merge(arr, left, midpoint, right);
+	if (l < r) {
+		int midpoint = l + (r - l) / 2;
+		MergeSort(arr, l, midpoint);
+		MergeSort(arr, midpoint + 1, r);
+		Merge(arr, l, midpoint, r);
 	}
 }
 
-/* Merge
-
-*/
+//Merge
 void Merge(int arr[], int left, int mid, int right) {
 	int i, j, k;
 	int leftHalf = mid-(left + 1);
 	int rightHalf = right-mid;
-	int L[leftHalf], R[rightHalf];
+	int* L = new int[leftHalf];
+	int* R = new int[rightHalf];
 	for (i = 0; i < leftHalf; i++) {
 		L[i] = arr[left + i];
 	}
@@ -89,9 +85,7 @@ void Merge(int arr[], int left, int mid, int right) {
 	}
 }
 
-/*	Insertion Sort
-
-*/
+// Insertion Sort
 void InsertionSort() {
 
 }

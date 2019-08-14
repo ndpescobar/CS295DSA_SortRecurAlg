@@ -5,8 +5,8 @@
 	This program will be able to apply insertion and merge sort to any given array,
 	however, one array has been provided.
 	@author: Nicolas Plata-Escobar
-	@date: 08/01/2019
-	@version: 0.1
+	@date: 08/13/2019
+	@version: 0.4
 */
 //------ Include Libraries ------
 #include <iostream>

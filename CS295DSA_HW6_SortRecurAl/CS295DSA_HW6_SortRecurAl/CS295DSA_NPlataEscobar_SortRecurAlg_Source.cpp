@@ -9,6 +9,7 @@
 	@version: 0.1
 */
 //------ Include Libraries ------
+#include <cstdlib>
 #include <iostream>
 #include <string>
 
@@ -51,20 +52,19 @@ void MergeSort(int arr[], int left, int right) {
 */
 void Merge(int arr[], int left, int mid, int right) {
 	int i, j, k;
-	int leftHalf = mid - (left + 1);
-	int rightHalf = right - mid;
-	int L[leftHalf];
-	int R[rightHalf];
-	for (i = 0; i < leftHalf; i++) {
+	static const int LEFT_HALF = mid - (left + 1);
+	static const int RIGHT_HALF = right - mid;
+	int L[LEFT_HALF], R[RIGHT_HALF];
+	for (i = 0; i < LEFT_HALF; i++) {
 		L[i] = arr[left + i];
 	}
-	for (j = 0; j < rightHalf; j++) {
+	for (j = 0; j < RIGHT_HALF; j++) {
 		R[j] = arr[mid + 1 + j];
 	}
 	i = 0;
 	j = 0;
 	k = 1;
-	while (i < leftHalf && j < rightHalf) {
+	while (i < LEFT_HALF && j < RIGHT_HALF) {
 		if (L[i] <= R[j]) {
 			arr[k] = L[i];
 			i++;
@@ -76,13 +76,13 @@ void Merge(int arr[], int left, int mid, int right) {
 		k++;
 	}
 	// left half merge
-	while (i < leftHalf) {
+	while (i < LEFT_HALF) {
 		arr[k] = L[i];
 		i++;
 		k++;
 	}
 	// right half merge
-	while (j < rightHalf) {
+	while (j < RIGHT_HALF) {
 		arr[k] = R[j];
 		j++;
 		k++;
